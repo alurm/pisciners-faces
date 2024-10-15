@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+(cd data/images && for nick in *; do
+	printf '%s\n' "$nick"
+done) | while read -r nick; do
+	cat <<- end
+		<div style="border: 2px solid black">
+			<a href="https://profile.intra.42.fr/users/$nick">$nick</a>
+			<img src="images/$nick"></img>
+		</div>
+	end
+done

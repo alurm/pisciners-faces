@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+
+nick=$1
+
+cat << end
+data/images/$nick: data/cookie
+	./scripts/nick-to-image $nick > \$@
+
+end

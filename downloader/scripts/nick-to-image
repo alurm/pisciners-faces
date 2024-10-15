@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+
+nick=$1
+
+link=$(
+	curl \
+		--no-progress-meter \
+		-L \
+		--cookie _intra_42_session_production="$(cat data/cookie)" \
+		--cookie intra=v2 \
+		"https://profile.intra.42.fr/users/$nick" \
+	| jq -r .image.versions.medium
+) || exit 1
+
+if [ "$link" != null ]; then
+	curl --no-progress-meter -L "$link"
+fi

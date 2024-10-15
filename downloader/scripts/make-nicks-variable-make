@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+cat << end
+nicks := \\
+$(
+        cat data/nicks.txt | sed -e 's:^:\tdata/images/: ; s:$: \\:'
+)
+#
+end
